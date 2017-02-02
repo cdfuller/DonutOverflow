@@ -3,7 +3,7 @@ class Vote < ActiveRecord::Base
   belongs_to :user
 
   validates :user_id, { presence: true }
-  validates :value, numericality: { only_integer: :true }
+  validates :value, numericality: { only_integer: true }
   validate :valid_vote_value
 
   def valid_vote_value
