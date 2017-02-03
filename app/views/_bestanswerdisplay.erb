@@ -1,0 +1,5 @@
+<% if @question.best_answer_id %>
+		<h3>Best Answer</h3>
+  	<span class='byline'>Created by <%=@best_answer.user.username%> on <%=standard_datetime(@best_answer.created_at)%></span>
+		<%= @best_answer.body %>
+<% end %>	

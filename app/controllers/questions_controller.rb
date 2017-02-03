@@ -20,7 +20,10 @@ end
 
 get '/questions/:id' do
   @question = Question.find_by(id: params[:id])
-  @answers = @question.answers
+  @best_answer = Answer.find_by_id(@question.best_answer_id)
+  @non_best_answers = @question.answers.reject{|answer| answer == @best_answer}
+
+   
 
   erb :'questions/show'
 end

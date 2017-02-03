@@ -1,0 +1,7 @@
+			<div class='top-answer' id="<%=answer.id%>">
+				<form method='post' action="/questions/<%=@question.id%>">
+					<input type="hidden" name="_method" value="put">
+					<input type="hidden" name="answer_id" value="<%= answer.id %>">
+					<input type="submit" value="Make Best Answer">
+				</form>
+			</div>
