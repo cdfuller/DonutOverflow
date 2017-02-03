@@ -1,6 +1,6 @@
 #form for creating new user
 get '/users/new' do
-  erb :_registrationform
+  erb :'users/new'
 end
 
 #post for submit on registration form
@@ -12,7 +12,7 @@ post '/users' do
     redirect '/'
   else
     @errors = user.errors.full_messages
-    erb :_registrationform
+    erb :'users/new'
   end
 
 end

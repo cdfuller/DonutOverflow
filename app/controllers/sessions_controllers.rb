@@ -1,19 +1,16 @@
 # login page
 get '/sessions/new' do
-  erb :"_loginform"
+  erb :"users/login"
 end
 
 post '/sessions' do
   user = User.find_by(email: params[:email])
-    # Authenticate user by checking password
     if user && user.authenticate?(params[:password])
-      # if authenticated assign a session to the user
       set_user(user)
       redirect "/"
     else
-      # show errors loggin in
       @errors = ["Invalid username or password"]
-      erb :"_loginform"
+      erb :"users/login"
     end
 
 end

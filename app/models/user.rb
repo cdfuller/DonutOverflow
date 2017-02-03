@@ -7,13 +7,13 @@ class User < ActiveRecord::Base
   #add relationship with votes earned.
 
 
-  validates :username, :email, :password, { presence: true }
+  validates :username, :email, { presence: true }
   validates :username, :email, { uniqueness: true }
   validates :email, format: { with: /\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\z/ }
   validate :check_password
 
   def check_password
-    if @raw_password.length == 0 || @raw_password.length < 8
+    if @raw_password && @raw_password.length < 8
       @errors.add(:password, "needs to be 8 characters or more")
     end
   end
