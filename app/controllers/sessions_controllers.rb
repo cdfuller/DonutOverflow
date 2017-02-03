@@ -3,10 +3,7 @@ get '/sessions/new' do
   erb :"_loginform"
 end
 
-# logging in now
-# put in correct info
 post '/sessions' do
-  p params
   user = User.find_by(email: params[:email])
     # Authenticate user by checking password
     if user && user.authenticate?(params[:password])
