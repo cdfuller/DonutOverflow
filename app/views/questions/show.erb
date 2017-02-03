@@ -9,8 +9,11 @@
 <div class="answers container">
 <h2>Answers</h2>
   <% @answers.each do |answer| %>
-  	<span class='byline'>Created by <%=answer.user.username%> on <%=standard_datetime(answer.created_at)%></span>
+  	<span class='byline'>Created by <%=answer.user.username%> on <%=answer.created_at%></span>
     <p><%= answer.body %></p><br>
   <% end %>
+  <%=@errors%>
+<%=erb :_answerform %>
 </div>
+
 
