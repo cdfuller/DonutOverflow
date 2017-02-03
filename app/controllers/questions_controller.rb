@@ -5,10 +5,7 @@ end
 
 post '/questions' do
   @question = Question.new(params[:question])
-  # ##########################################
-  # fix authentication in line below
-  session[:user_id]=1
-  ###########################################
+  @question.author = current_user
   @question.user_id = 1
   if @question.save
     redirect "questions/#{@question.id}"
@@ -23,7 +20,6 @@ get '/questions/new' do
 end
 
 get '/questions/:id' do
-  p params
   @question = Question.find_by(id: params[:id])
   erb :'questions/show'
 end
