@@ -8,7 +8,7 @@ post '/sessions' do
     # Authenticate user by checking password
     if user && user.authenticate?(params[:password])
       # if authenticated assign a session to the user
-      session[:user_id] = user.id
+      set_user(user)
       redirect "/"
     else
       # show errors loggin in
