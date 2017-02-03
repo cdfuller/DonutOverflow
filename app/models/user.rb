@@ -14,17 +14,13 @@ class User < ActiveRecord::Base
   validate :check_password
 
   def check_password
-    if @raw_password.length > 8
-      errors.add(:password, "needs to be 8 characters or more")
+    if @raw_password.length == 0 || @raw_password.length < 8
+      @errors.add(:password, "needs to be 8 characters or more")
     end
   end
 
-  def self.authenticate(login, password)
-    if User.find_by_email(login)
+  def authenticate?(password)
       self.password == password
-    else User.find_by_username(login)
-      self.password == password
-    end
   end
 
   def password

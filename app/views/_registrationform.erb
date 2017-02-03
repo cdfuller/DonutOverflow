@@ -1,6 +1,6 @@
 <container class='registration'>
 
-    <% if @errors.any? %>
+    <% if @errors %>
         <% @errors.each do |e| %>
             <%= e %>
         <% end %>
