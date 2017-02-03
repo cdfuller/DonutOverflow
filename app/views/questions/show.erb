@@ -2,3 +2,21 @@
 <%= @question.title %><br>
 <%= @question.body %>
 </div>
+
+<div class="vote">
+  
+  <% if logged_in? %>
+    <form class="vote-form upvote-form" method="post" action="/questions/<%= @question.id %>/vote" value="1">
+      <input class="upvote-button" type="submit" name="upvote">
+    </form>
+  <% end %>
+
+    <span class="vote-counter"><%= @question.score %></span>
+
+  <% if logged_in? %>
+    <form class="vote-form downvote-form" method="post" action="/questions/<%= @question.id %>/vote" >
+      <input class="downvote-button" type="submit" name="downvote" value="-1">
+    </form>
+  <% end %>
+  
+</div>

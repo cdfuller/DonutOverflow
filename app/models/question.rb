@@ -5,6 +5,10 @@ class Question < ActiveRecord::Base
   has_many :votes, as: :voteable
   has_one :best_answer, :class_name => "Answer"
 
-
   validates :title, :body, :user_id, { presence: true }
+
+  def score
+    votes.count
+  end
+
 end
