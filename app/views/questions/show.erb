@@ -2,9 +2,22 @@
   <h1><%= @question.title %></h1><br>
   <span class='byline'>Created by <%=@question.author.username%> on <%=standard_datetime(@question.created_at)%></span>
   <p><%= @question.body %></p>
+
+  <div class="comments container">
+  <h2>Comments</h2>
+
+    <% @comments.each do |comment| %>
+    	<span class='byline'>Created by <%=comment.user.username%> on <%=standard_datetime(comment.created_at)%></span>
+      <p><%= comment.body %></p><br>
+    <% end %>
+
+    <%= erb :'_error' %>
+
+    <%= erb :'comments/new' %>
+  </div>
 </div>
 
-<div class='comment'></div>
+<!-- <div class='comment'></div> -->
 
 <div class="answers container">
 <h2>Answers</h2>
@@ -17,4 +30,18 @@
   <%= erb :'_error' %>
 
   <%=erb :_answerform %>
+
+  <div class="comments container">
+  <h2>Comments</h2>
+
+    <% @comments.each do |comment| %>
+      <span class='byline'>Created by <%=comment.user.username%> on <%=standard_datetime(comment.created_at)%></span>
+      <p><%= comment.body %></p><br>
+    <% end %>
+
+    <%= erb :'_error' %>
+
+    <%= erb :'comments/new' %>
+  </div>
+
 </div>
