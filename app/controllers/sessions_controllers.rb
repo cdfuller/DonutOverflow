@@ -20,3 +20,9 @@ delete '/sessions' do
   session[:user_id] = nil
   redirect '/'
 end
+
+# backup method to log-out. useful for testing. 
+get '/logout' do
+  session[:user_id] = nil
+  redirect '/'
+end
