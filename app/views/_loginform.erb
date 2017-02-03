@@ -1,10 +1,6 @@
 <container class='login'>
-    <% if @errors %>
-        <% @errors.each do |e| %>
-            <%= e %>
-        <% end %>
-    <% end %>
 
+  <%= erb :'_error' %>
 
   <form class="login-form" method="post" action="/sessions">
     <label>Email or Username:</label><br>
