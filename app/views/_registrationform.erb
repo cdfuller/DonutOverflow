@@ -1,4 +1,11 @@
 <container class='registration'>
+
+    <% if @errors.any? %>
+        <% @errors.each do |e| %>
+            <%= e %>
+        <% end %>
+    <% end %>
+
   <form class="new-user-form" method="post" action="/users">
     <label>Username:</label><br>
     <input id="first-name" type="text" name="user[username]" /><br>
@@ -6,8 +13,6 @@
     <input id="email" type="email" name="user[email]" /><br>
     <label>Password:</label><br>
     <input id="password" type="password" name="user[password]" /><br>
-    <label>Confirm Password:</label><br>
-    <input id="confirm-password" type="password" name="user[confirm_password]" /><br>
     <input type="submit" value="submit"/>
   </form>
 </container>
