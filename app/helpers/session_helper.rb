@@ -1,7 +1,7 @@
 helpers do
 
   def current_user
-    User.create(id: session[:user_id])
+    User.find(session[:user_id])
   end
 
 end
