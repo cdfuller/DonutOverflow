@@ -1,0 +1,16 @@
+<container class='login'>
+    <% if @errors %>
+        <% @errors.each do |e| %>
+            <%= e %>
+        <% end %>
+    <% end %>
+
+
+  <form class="login-form" method="post" action="/sessions">
+    <label>Email or Username:</label><br>
+    <input id="email" type="email" name="email" /><br>
+    <label>Password:</label><br>
+    <input id="password" type="password" name="password" /><br>
+    <input type="submit" value="submit"/>
+  </form>
+</container>
