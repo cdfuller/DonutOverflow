@@ -1,0 +1,6 @@
+<form method='post' action="/questions/<%=@question.id%>/answers">
+  <textarea name='body' value='<%= @current_answer.try(:body) %>'></textarea>
+  <br>
+
+  <input type="submit" value="Post Answer">
+</form>
