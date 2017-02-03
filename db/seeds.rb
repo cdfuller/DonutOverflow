@@ -1,7 +1,7 @@
-kevin = {username:"kevin",email:"kevin@gmail.com",hashed_password:BCrypt::Password.create('password')},
-savance =  {username:"savance",email:"savance@gmail.com",hashed_password:BCrypt::Password.create('password')},
-cody = {username:"cody",email:"cody@gmail.com",hashed_password:BCrypt::Password.create('password')},
-joe = {username:"joe",email:"joe@gmail.com",hashed_password:BCrypt::Password.create('password')}
+kevin = {username:"kevin",email:"kevin@gmail.com",password:"password"},
+savance =  {username:"savance",email:"savance@gmail.com",password:"password"},
+cody = {username:"cody",email:"cody@gmail.com",password:"password"},
+joe = {username:"joe",email:"joe@gmail.com",password:"password"}
 
 User.create([kevin,savance,cody,joe])
 
