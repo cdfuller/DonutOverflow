@@ -1,0 +1,21 @@
+<div class="container">
+
+<%= erb :'_error' %>
+
+<h1>Post a new question</h1>
+
+<form action='/questions' method='post'>
+
+  <label>Title:
+    <input type='text' name='question[title]' placeholder='Enter a title' value='<%= @question.try(:title) %>'>
+  </label>
+  <br>
+
+  <textarea name='question[body]' value='<%= @question.try(:body) %>'></textarea>
+  <br>
+
+  <input type="submit" value="Post Question">
+</form>
+
+</div>
+
