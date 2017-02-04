@@ -3,7 +3,12 @@ post '/questions/:id/vote' do
   vote.user = current_user
   vote.save
 
-  @question = Question.find_by(id: params[:id])
-  @question.votes << vote
-  erb :"questions/show"
+  question = Question.find_by(id: params[:id])
+  question.votes << vote
+  redirect "/questions/#{question.id}"
+end
+
+get '/questions/:id/votes' do
+  question = Question.find_by(id: params[:id])
+  question.votes.to_json
 end

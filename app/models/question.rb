@@ -8,7 +8,7 @@ class Question < ActiveRecord::Base
   validates :title, :body, :user_id, { presence: true }
 
   def score
-    votes.count
+    votes.sum(:value)
   end
 
 end
