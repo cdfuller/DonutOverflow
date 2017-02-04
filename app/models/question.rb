@@ -5,6 +5,17 @@ class Question < ActiveRecord::Base
   has_many :votes, as: :voteable
   has_one :best_answer, :class_name => "Answer"
 
-
   validates :title, :body, :user_id, { presence: true }
+
+  def score
+    votes.sum(:value)
+  end
+
+  def answers_without_best
+    answers.reject do |answer|
+      answer == best_answer
+    end
+  end
+
+
 end

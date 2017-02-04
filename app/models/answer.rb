@@ -5,4 +5,9 @@ class Answer < ActiveRecord::Base
   has_many :votes, as: :voteable
 
   validates :body, :user_id, { presence: true }
+
+  def score
+    votes.sum(:value)
+  end
+
 end
