@@ -1,0 +1,14 @@
+ <div class="votes">
+    <% if logged_in? %>
+      <form action="<%= "#{url}" %>" method="POST">
+        <input type="submit" name="value" value="1">
+      </form>
+      <form action="<%= "#{url}" %>" method="POST">
+        <input type="submit" name="value" value="0">
+      </form>
+      <form action="<%= "#{url}" %>" method="POST">
+        <input type="submit" name="value" value="-1">
+      </form>
+    <% end %>
+      <span class="vote-counter">Score: <%= score %></span>
+ </div>
