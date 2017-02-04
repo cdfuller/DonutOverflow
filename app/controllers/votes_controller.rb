@@ -1,8 +1,3 @@
-get '/questions/:id/votes' do
-  question = Question.find_by(id: params[:id])
-  question.votes.to_json
-end
-
 post '/questions/:id/vote' do 
   question = Question.find_by(id: params[:id])
   vote = question.votes.find_or_create_by(user: current_user)
