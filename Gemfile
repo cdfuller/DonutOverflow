@@ -15,6 +15,7 @@ gem 'activerecord', '~>4.2'
 
 gem 'rake'
 gem 'pry'
+gem 'pry-coolline'
 gem 'bcrypt'
 
 gem 'shotgun'
