@@ -11,4 +11,11 @@ class Question < ActiveRecord::Base
     votes.sum(:value)
   end
 
+  def answers_without_best
+    answers.reject do |answer|
+      answer == best_answer
+    end
+  end
+
+
 end

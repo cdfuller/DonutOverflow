@@ -1,14 +1,18 @@
-post '/questions/:id/vote' do
-  vote = Vote.new(value: params[:value])
-  vote.user = current_user
-  vote.save
-
-  question = Question.find_by(id: params[:id])
-  question.votes << vote
-  redirect "/questions/#{question.id}"
-end
-
 get '/questions/:id/votes' do
   question = Question.find_by(id: params[:id])
   question.votes.to_json
+end
+
+post '/questions/:id/vote' do 
+  question = Question.find_by(id: params[:id])
+  vote = question.votes.find_or_create_by(user: current_user)
+
+  if params[:value].to_i == 0
+    vote.destroy
+  else
+    vote.value = params[:value]
+    vote.save
+  end
+
+  redirect "/questions/#{question.id}"
 end

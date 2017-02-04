@@ -1,8 +1,22 @@
 <div class="container">
+  <div style="border: 1px dashed #bbb;">
+    <h1><%= @question.title %></h1>
+    <span class='byline'>Created by <%=@question.author.username%> on <%=standard_datetime(@question.created_at)%></span>
+    <p><%= @question.body %></p>
 
-  <h1><%= @question.title %></h1>
-  <span class='byline'>Created by <%=@question.author.username%> on <%=standard_datetime(@question.created_at)%></span>
-  <p><%= @question.body %></p>
+    <% if logged_in? %>
+      <form action="<%= "/questions/#{@question.id}/vote" %>" method="POST">
+        <input type="submit" name="value" value="1">
+      </form>
+      <form action="<%= "/questions/#{@question.id}/vote" %>" method="POST">
+        <input type="submit" name="value" value="0">
+      </form>
+      <form action="<%= "/questions/#{@question.id}/vote" %>" method="POST">
+        <input type="submit" name="value" value="-1">
+      </form>
+    <% end %>
+      <span class="vote-counter">Score: <%= @question.score %></span>
+  </div>
 
   <% # Comments for question %>
 
@@ -23,7 +37,27 @@
 
   <% # Check for best answer %>
 
-  <% @question.answers.each do |answer| %>
+  <% if @question.best_answer %>
+
+  <h3>Best Answer</h3>
+    <div style="border: 1px solid #bbb; margin:10px; background-color: #a3ffca">
+      <span class='byline'>Answer by <%=@question.best_answer.user.username%> on <%=standard_datetime(@question.best_answer.created_at)%></span>
+      <p>Score: <%= @question.best_answer.score %></p>
+        <br>
+      <p><%= @question.best_answer.body %></p>
+        <br>
+        <h4>Comments:</h4>
+        <% @question.best_answer.comments.each do |comment| %>
+          <div style="border: 1px solid #ddd; margin-left: 20px;" >
+            <p><%= comment.body %></p>
+            <p>Score: <%= comment.score %></p>
+          </div>
+        <% end %>
+    </div>
+  <h3>Other Answers</h3>
+  <% end %>
+
+  <% @question.answers_without_best.each do |answer| %>
     <div style="border: 1px solid #bbb; margin:10px">
       <span class='byline'>Answer by <%=answer.user.username%> on <%=standard_datetime(answer.created_at)%></span>
       <p>Score: <%= answer.score %></p>
@@ -37,9 +71,6 @@
             <p>Score: <%= comment.score %></p>
           </div>
         <% end %>
-
-        erb(:'/partial name', action: url)
-
     </div>
   <% end %>
 
