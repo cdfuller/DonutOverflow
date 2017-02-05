@@ -9,7 +9,6 @@ post '/questions' do
   if @question.save
     redirect "questions/#{@question.id}"
   else
-    @errors = @question.errors.full_messages
     erb :'questions/new'
   end
 end
