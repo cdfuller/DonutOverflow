@@ -42,7 +42,7 @@
   <% end %>
 
   <% @question.answers_without_best.each do |answer| %>
-    <div style="border: 1px solid #bbb; margin:10px">
+    <div class="answer">
       <span class='byline'>Answer by <%=answer.user.username%> on <%=standard_datetime(answer.created_at)%></span>
       <!-- question to mark as best answer -->
       <% if current_author?(@question) %>
@@ -54,10 +54,10 @@
       <% end %>
       <!-- end of best answer form -->
           <%= erb :'_vote', locals: { url: "/answers/#{answer.id}/vote", score: answer.score } %>
-        <br>
+
+      <%= erb :'_comment', locals: { url: "/answers/#{answer.id}" ,comments: answer.comments} %>
       <p><%= answer.body %></p>
-        <br>
-          <%= erb :'_comment', locals: { url: "/answers/#{answer.id}" ,comments: answer.comments} %>
+
     </div>
   <% end %>
 
