@@ -10,16 +10,8 @@
 
   <% # Comments for question %>
 
-  <h4>Question Comments:</h4>
+  <%= erb :'_comment', locals: { url: "/questions/#{@question.id}/comments", comments: @question.comments} %>
 
-  <% @question.comments.each do |comment| %>
-
-      <div style="border: 1px solid #ddd;" >
-      <p><%= comment.body %></p>
-      <p>Score: <%= comment.score %></p>
-      </div>
-
-  <% end %>
 
   <% # Answers for question %>
 
