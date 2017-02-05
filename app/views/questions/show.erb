@@ -52,6 +52,11 @@
   <% @question.answers_without_best.each do |answer| %>
     <div style="border: 1px solid #bbb; margin:10px">
       <span class='byline'>Answer by <%=answer.user.username%> on <%=standard_datetime(answer.created_at)%></span>
+      <form action="<%= "/questions/#{answer.question.id}" %>" method="POST">
+        <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="answer_id" value="<%= answer.id %>">
+        <input type="submit" value="Mark as best answer">
+      </form>
           <%= erb :'_vote', locals: { url: "/answers/#{answer.id}/vote", score: answer.score } %>
         <br>
       <p><%= answer.body %></p>
