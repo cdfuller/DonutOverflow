@@ -4,18 +4,8 @@
     <span class='byline'>Created by <%=@question.author.username%> on <%=standard_datetime(@question.created_at)%></span>
     <p><%= @question.body %></p>
 
-    <% if logged_in? %>
-      <form action="<%= "/questions/#{@question.id}/vote" %>" method="POST">
-        <input type="submit" name="value" value="1">
-      </form>
-      <form action="<%= "/questions/#{@question.id}/vote" %>" method="POST">
-        <input type="submit" name="value" value="0">
-      </form>
-      <form action="<%= "/questions/#{@question.id}/vote" %>" method="POST">
-        <input type="submit" name="value" value="-1">
-      </form>
-    <% end %>
-      <span class="vote-counter">Score: <%= @question.score %></span>
+    <%= erb :'_vote', locals: { url: "/questions/#{@question.id}/vote", score: @question.score } %>
+
   </div>
 
   <% # Comments for question %>
@@ -42,7 +32,8 @@
   <h3>Best Answer</h3>
     <div style="border: 1px solid #bbb; margin:10px; background-color: #a3ffca">
       <span class='byline'>Answer by <%=@question.best_answer.user.username%> on <%=standard_datetime(@question.best_answer.created_at)%></span>
-      <p>Score: <%= @question.best_answer.score %></p>
+
+          <%= erb :'_vote', locals: { url: "/answers/#{@question.best_answer.id}/vote", score: @question.best_answer.score } %>
         <br>
       <p><%= @question.best_answer.body %></p>
         <br>
@@ -50,7 +41,8 @@
         <% @question.best_answer.comments.each do |comment| %>
           <div style="border: 1px solid #ddd; margin-left: 20px;" >
             <p><%= comment.body %></p>
-            <p>Score: <%= comment.score %></p>
+          <%= erb :'_vote', locals: { url: "/comments/#{comment.id}/vote", score: comment.score } %>
+
           </div>
         <% end %>
     </div>
@@ -65,7 +57,7 @@
         <input type="hidden" name="answer_id" value="<%= answer.id %>">
         <input type="submit" value="Mark as best answer">
       </form>
-      <p>Score: <%= answer.score %></p>
+          <%= erb :'_vote', locals: { url: "/answers/#{answer.id}/vote", score: answer.score } %>
         <br>
       <p><%= answer.body %></p>
         <br>
@@ -73,7 +65,7 @@
         <% answer.comments.each do |comment| %>
           <div style="border: 1px solid #ddd; margin-left: 20px;" >
             <p><%= comment.body %></p>
-            <p>Score: <%= comment.score %></p>
+          <%= erb :'_vote', locals: { url: "/comments/#{comment.id}/vote", score: comment.score } %>
           </div>
         <% end %>
     </div>
