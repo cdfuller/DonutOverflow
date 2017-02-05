@@ -9,4 +9,12 @@ class Comment < ActiveRecord::Base
     votes.sum(:value)
   end
 
+  def question
+    if commentable_type == "Question"
+      return question = commentable
+    elsif commentable_type == "Answer"
+      return question = commentable.question
+    end
+  end
+
 end
