@@ -1,6 +1,9 @@
 <container class='registration'>
 
-  <%= erb :'_error' %>
+<% if @user %>
+  <%= erb :'_error', locals: { errors: @user.errors.full_messages } %>
+<% end %>
+
 
   <form class="new-user-form" method="post" action="/users">
     <label>Username:</label><br>

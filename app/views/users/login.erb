@@ -1,6 +1,8 @@
 <container class='login'>
 
-  <%= erb :'_error' %>
+<% if @errors %>
+  <%= erb :'_error', locals: { errors: @errors } %>
+<% end %>
 
   <form class="login-form" method="post" action="/sessions">
     <label>Email or Username:</label><br>
