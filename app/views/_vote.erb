@@ -1,14 +1,19 @@
  <div class="votes">
     <% if logged_in? %>
-      <form action="<%= "#{url}" %>" method="POST" style="display:inline;">
-        <input type="submit" name="value" value="1">
+      <form action="<%= "#{url}" %>" method="POST">
+        <button type="submit" value="1" name="value">
+          <span class="icon">
+            <i class="fa fa-caret-up" aria-hidden="true" title="Upvote"></i>
+          </span>
+        </button>
       </form>
-      <form action="<%= "#{url}" %>" method="POST" style="display:inline;">
-        <input type="submit" name="value" value="0">
-      </form>
-      <form action="<%= "#{url}" %>" method="POST" style="display:inline;">
-        <input type="submit" name="value" value="-1">
+      <span class="vote-score"><%= score %></span>
+      <form action="<%= "#{url}" %>" method="POST">
+        <button type="submit" value="-1" name="value">
+          <span class="icon">
+            <i class="fa fa-caret-down" aria-hidden="true" title="Downvote"></i>
+          </span>
+        </button>
       </form>
     <% end %>
-      <span class="vote-counter">Score: <%= score %></span>
  </div>

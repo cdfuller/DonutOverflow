@@ -1,9 +1,26 @@
-.container {
-  margin: 20px auto;
-  width: 600px;
-  padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
+.votes button {
+    border: none;
+    background: none;
 }
-th {
-  text-align: left;
+
+.votes {
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.1em;
+}
+
+.comment {
+    display: inline-flex;
 }
