@@ -1,0 +1,16 @@
+<h4>Comments:</h4>
+<% comments.each do |comment| %>
+  <div style="border: 1px solid #ddd; margin-left: 20px;" >
+    <p><%= comment.body %></p>
+  <%= erb :'_vote', locals: { url: "/comments/#{comment.id}/vote", score: comment.score } %>
+  </div>
+<% end %>
+
+<% if logged_in? %>
+
+<form action="<%= url %>" method="post">
+  <input type="text" name="body" placeholder="Enter a comment">
+  <input type="submit"  value="Post comment">
+</form>
+
+<% end %>

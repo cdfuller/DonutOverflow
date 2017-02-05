@@ -22,7 +22,7 @@
   <% end %>
 
   <% # Answers for question %>
-  
+
   <h2>Answers</h2>
 
   <% # Check for best answer %>
@@ -61,13 +61,7 @@
         <br>
       <p><%= answer.body %></p>
         <br>
-        <h4>Comments:</h4>
-        <% answer.comments.each do |comment| %>
-          <div style="border: 1px solid #ddd; margin-left: 20px;" >
-            <p><%= comment.body %></p>
-          <%= erb :'_vote', locals: { url: "/comments/#{comment.id}/vote", score: comment.score } %>
-          </div>
-        <% end %>
+          <%= erb :'_comment', locals: { url: "/answers/#{answer.id}" ,comments: answer.comments} %>
     </div>
   <% end %>
 
