@@ -24,3 +24,11 @@ h3 {
 .comment {
     display: inline-flex;
 }
+
+.upvoted {
+    color: #23d160;
+}
+
+.downvoted {
+    color: tomato;
+}
