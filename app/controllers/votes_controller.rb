@@ -9,7 +9,12 @@ post '/questions/:id/vote' do
     vote.save
   end
 
-  redirect "/questions/#{question.id}"
+  if request.xhr?
+    content_type :json
+    return {score: question.score}.to_json
+  else
+    redirect "/questions/#{question.id}"
+  end
 end
 
 post '/answers/:id/vote' do
@@ -23,7 +28,12 @@ post '/answers/:id/vote' do
     vote.save
   end
 
-  redirect "/questions/#{answer.question.id}"
+  if request.xhr?
+    content_type :json
+    return {score: answer.score}.to_json
+  else
+    redirect "/questions/#{answer.question.id}"
+  end
 end
 
 post '/comments/:id/vote' do
@@ -36,5 +46,10 @@ post '/comments/:id/vote' do
     vote.save
   end
 
-  redirect "/questions/#{comment.question.id}"
+  if request.xhr?
+    content_type :json
+    return {score: comment.score}.to_json
+  else
+    redirect "/questions/#{comment.question.id}"
+  end
 end
