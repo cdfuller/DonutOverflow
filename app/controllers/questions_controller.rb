@@ -14,7 +14,13 @@ post '/questions' do
 end
 
 get '/questions/new' do
-  erb :'questions/new'
+  @questions = Question.all 
+  if logged_in?
+    erb :'questions/new'
+  else
+    @errors = ['Must be logged in to post a question.']
+    erb :'questions/index'
+  end
 end
 
 get '/questions/:id' do
@@ -25,8 +31,10 @@ end
 # Mark answer as best
 put '/questions/:id' do
   question = Question.find_by(id: params[:id])
-  answer = Answer.find_by(id: params[:answer_id])
-  question.best_answer = answer
-  question.save
+  if current_author?(question)
+    answer = Answer.find_by(id: params[:answer_id])
+    question.best_answer = answer
+    question.save
+  end
   redirect "/questions/#{question.id}"
 end

@@ -1,7 +1,7 @@
 <header>
   <nav class="nav-bar">
+    <a href="/">home</a>
     <% if current_user %>
-      <a href="/">home</a>
       <form class="button-link" method="post" action="/sessions">
           <input type="hidden" name="_method" value="delete">
           <button id="logout-button" type="submit">Logout</button>
