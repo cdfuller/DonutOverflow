@@ -17,5 +17,7 @@ class Question < ActiveRecord::Base
     end
   end
 
+  
+
 
 end

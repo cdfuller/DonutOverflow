@@ -1,6 +1,11 @@
 <div class="container">
 <h1>Questions</h1>
+	<% if @errors %>
+  <p class="errors"><%= erb :'_error', locals: { errors: @errors} %></p>
+  <% end %>
+<% if logged_in? %>  
 <a href="/questions/new">Post a new question</a><br><br>
+<% end %>
   <% @questions.each do |question| %>
     <a href="<%= "/questions/#{question.id}" %>"><%= question.title %></a><br>
   <% end %>
