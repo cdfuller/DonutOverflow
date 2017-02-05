@@ -10,3 +10,7 @@ end
 def set_user(user)
   session[:user_id] = user.id
 end
+
+def current_author?(question)
+	current_user == question.author
+end
