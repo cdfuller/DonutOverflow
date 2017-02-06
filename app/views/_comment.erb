@@ -1,16 +1,40 @@
 <h3>Comments:</h3>
 <% comments.each do |comment| %>
-  <div class="comment" >
+<div class="box">
+  <article class="media">
+    <figure class="media-left">
     <%= erb :'_vote', locals: { url: "/comments/#{comment.id}/vote", score: comment.score } %>
-    <p><%= comment.body %></p>
-  </div>
+    </figure>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong><%= comment.user.username %></strong>
+          <br>
+          <%= comment.body %>
+          <br>
+        <small><%= formatted_datetime(comment.created_at) %></small>
+        </p>
+      </div>     
+    </div>
+  </article>
+</div>
 <% end %>
 
 <% if logged_in? %>
 
-<form action="<%= url %>" method="post">
-  <input type="text" name="body" placeholder="Enter a comment">
-  <input type="submit"  value="Post comment">
-</form>
+<div class="box">
+  <article class="media">
+    <div class="media-content">
+      <form action="<%= url %>" method="post">
+        <p class="control">
+          <textarea class="textarea" name="body" placeholder="Add a comment..."></textarea>
+        </p>
+        <p class="control">
+          <button type="submit" class="button is-info">Post comment</button>
+        </p>
+      </form>
+    </div>
+  </article>
+</div>
 
 <% end %>

@@ -1,63 +1,48 @@
-<div class="container">
-  <div style="border: 1px dashed #bbb;">
-    <h1><%= @question.title %></h1>
-    <span class='byline'>Created by <%=@question.author.username%> on <%=standard_datetime(@question.created_at)%></span>
-    <p><%= @question.body %></p>
 
-    <%= erb :'_vote', locals: { url: "/questions/#{@question.id}/vote", score: @question.score } %>
+  <div>
+   <article class="media">
+      <figure class="media-left">
+        <%= erb :'_vote', locals: { url: "/questions/#{@question.id}/vote", score: @question.score } %>
+      </figure>
+      <div class="media-content">
+          <h1><%= @question.title %></h1>
+        <div class="content">
+          <p>
+            <%= @question.body %>
+            <br>
+          <small><%= formatted_datetime(@question.created_at) %> by <strong><%= @question.author.username %></strong></small>
+          </p>
+        </div>     
+        <%= erb :'_comment', locals: { url: "/questions/#{@question.id}/comments", comments: @question.comments} %>
+      </div>
+    </article>
+
 
   </div>
 
-  <% # Comments for question %>
 
-  <%= erb :'_comment', locals: { url: "/questions/#{@question.id}/comments", comments: @question.comments} %>
-
-
-  <% # Answers for question %>
 
   <h2>Answers</h2>
 
-  <% # Check for best answer %>
-
   <% if @question.best_answer %>
 
-  <h3>Best Answer</h3>
-    <div style="border: 1px solid #bbb; margin:10px; background-color: #a3ffca">
-      <span class='byline'>Answer by <%=@question.best_answer.user.username%> on <%=standard_datetime(@question.best_answer.created_at)%></span>
-
-          <%= erb :'_vote', locals: { url: "/answers/#{@question.best_answer.id}/vote", score: @question.best_answer.score } %>
-        <br>
-      <p><%= @question.best_answer.body %></p>
-        <br>
-        <h4>Comments:</h4>
-        <% @question.best_answer.comments.each do |comment| %>
-          <div style="border: 1px solid #ddd; margin-left: 20px;" >
-            <p><%= comment.body %></p>
-          <%= erb :'_vote', locals: { url: "/comments/#{comment.id}/vote", score: comment.score } %>
-
-          </div>
-        <% end %>
+    <div class="columns">
+      <div class="column is-10 is-offset-1">
+        <div class="box" id="best-answer-box">
+          <%= erb :'_answer', locals: { answer: @question.best_answer, question: @question, is_best_answer: true} %>
+        </div>
+      </div>
     </div>
-  <h3>Other Answers</h3>
+
   <% end %>
 
   <% @question.answers_without_best.each do |answer| %>
-    <div class="answer">
-      <span class='byline'>Answer by <%=answer.user.username%> on <%=standard_datetime(answer.created_at)%></span>
-      <!-- question to mark as best answer -->
-      <% if current_author?(@question) %>
-        <form action="<%= "/questions/#{answer.question.id}" %>" method="POST">
-          <input type="hidden" name="_method" value="PUT">
-          <input type="hidden" name="answer_id" value="<%= answer.id %>">
-          <input type="submit" value="Mark as best answer">
-        </form>
-      <% end %>
-      <!-- end of best answer form -->
-          <%= erb :'_vote', locals: { url: "/answers/#{answer.id}/vote", score: answer.score } %>
-
-      <%= erb :'_comment', locals: { url: "/answers/#{answer.id}" ,comments: answer.comments} %>
-      <p><%= answer.body %></p>
-
+    <div class="columns">
+      <div class="column is-10 is-offset-1">
+        <div class="box">
+          <%= erb :'_answer', locals: { answer: answer, question: @question, is_best_answer: false  } %>
+        </div>
+      </div>
     </div>
   <% end %>
 
@@ -66,7 +51,7 @@
   <% end %>
 
   <% if logged_in? %>
-    <%=erb :_answerform %>
+    <%=erb :_answerform, locals: { url: "/questions/<%=@question.id", answer: @answer} %>
   <% end %>
 
-</div>
+
