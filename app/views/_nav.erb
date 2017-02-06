@@ -1,14 +1,31 @@
-<header>
-  <nav class="nav-bar">
-    <a href="/">home</a>
-    <% if current_user %>
-      <form class="button-link" method="post" action="/sessions">
-          <input type="hidden" name="_method" value="delete">
-          <button id="logout-button" type="submit">Logout</button>
+<nav class="nav has-shadow">
+<div class="container">
+  <div class="nav-left">
+    <a class="nav-item">DonutOverflow</a>
+  </div>
+
+  <!-- This "nav-toggle" hamburger menu is only visible on mobile -->
+  <!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
+  <span class="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+
+  <!-- This "nav-menu" is hidden on mobile -->
+  <!-- Add the modifier "is-active" to display it on mobile -->
+  <div class="nav-right nav-menu">
+    <a class="nav-item" href="/">Home</a>
+    <a class="nav-item" href="/questions">Questions</a>
+    <% if logged_in? %>
+      <form action="/sessions" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="nav-item">Logout</button>
       </form>
     <% else %>
-      <a href="/sessions/new">login</a>
-      <a href="/users/new">register</a>
+    <a class="nav-item" href="/sessions/new">Login</a>
+    <a class="nav-item" href="/users/new">Register</a>
     <% end %>
-  </nav>
-</header>
+  </div>
+</div>
+</nav>
