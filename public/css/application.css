@@ -11,14 +11,17 @@
 
 h1 {
     font-size: 2.5em;
+    font-weight: bold;
 }
 
 h2 {
     font-size: 1.5em;
+    font-weight: bold;
 }
 
 h3 {
     font-size: 1.1em;
+    font-weight: bold;
 }
 
 .comment {
@@ -41,4 +44,25 @@ h3 {
 
 .nav button:hover {
     color: #363636;
+}
+
+.answer-body {
+    display: inline-flex;
+}
+
+.box {
+    background-color: #f7f7f7;
+}
+
+.media .box {
+    border-top: none;
+    background-color: #eaeaea;
+}
+
+#best-answer-box {
+    background-color: #d0ffd0;
+}
+
+#login-box {
+    margin-top: 50px;
 }

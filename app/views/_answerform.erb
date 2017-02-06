@@ -1,6 +1,21 @@
-<form method='post' action="/questions/<%=@question.id%>/answers">
-  <textarea name='body' value='<%= @current_answer.try(:body) %>'></textarea>
-  <br>
-
-  <input type="submit" value="Post Answer">
-</form>
+<div class="columns">
+  <div class="column is-10 is-offset-1">
+  <h3>Post an answer</h3>
+    <div class="box">
+      <article class="media">
+        <div class="media-content">
+          <form action="<%= url %>" method="post">
+            <p class="control">
+              <textarea class="textarea" name="body" placeholder="Add an answer...">
+                <%= @answer.try(:body) %>
+              </textarea>
+            </p>
+            <p class="control">
+              <button type="submit" class="button is-info">Post Answer</button>
+            </p>
+          </form>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>

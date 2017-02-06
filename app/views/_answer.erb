@@ -1,0 +1,28 @@
+<% if is_best_answer %>
+  <h3>Best Answer</h3>
+<% end %>
+<article class="media">
+  <figure class="media-left">
+    <%= erb :'_vote', locals: { url: "/answers/#{answer.id}/vote", score: answer.score } %>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong><%= answer.user.username %></strong>
+        <br>
+        <%= answer.body %>
+        <br>
+      <% if is_best_answer != true && current_author?(answer.question) %>
+      <form action="<%= "/questions/#{answer.question.id}" %>" method="POST">
+        <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="answer_id" value="<%= answer.id %>" >
+        <button type="submit" class="button is-primary">Mark As Best</button>
+      </form>
+      <% end %>
+
+      <small><%= formatted_datetime(answer.created_at) %></small>
+      </p>
+    </div>
+    <%= erb :'_comment', locals: { url: "/answers/#{answer.id}" ,comments: answer.comments} %>
+  </div>
+</article>

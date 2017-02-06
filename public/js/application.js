@@ -14,4 +14,3 @@ var clickVote = function(event) {
 var updateScoreDisplay = function(json) {
     $(this).siblings('.vote-score').text(json['score']);
 }
-
