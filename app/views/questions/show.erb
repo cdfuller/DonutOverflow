@@ -51,7 +51,7 @@
   <% end %>
 
   <% if logged_in? %>
-    <%=erb :_answerform, locals: { url: "/questions/<%=@question.id", answer: @answer} %>
+    <%=erb :_answerform, locals: { url: "/questions/#{@question.id}/answers", answer: @answer} %>
   <% end %>
 
 
