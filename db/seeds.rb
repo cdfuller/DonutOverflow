@@ -2,8 +2,8 @@ kevin = {username:"kevin",email:"kevin@gmail.com",password:"password"},
 savance =  {username:"savance",email:"savance@gmail.com",password:"password"},
 cody = {username:"cody",email:"cody@gmail.com",password:"password"},
 joe = {username:"joe",email:"joe@gmail.com",password:"password"}
-
-User.create([kevin,savance,cody,joe])
+yibin = {username:"yibin", email:"yibin@yibin.com", password:"password"}
+User.create([kevin,savance,cody,joe,yibin])
 
 Question.create([
   {title:"How do I use ruby?", body:"I have no idea what I'm doing!?!? Can someone give me the answer?", views:"10",user_id:"1",best_answer_id:"1"},
